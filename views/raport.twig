@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Basamak Bilişim İçerik Yönetim Sistemi</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/_next/daebdf84909b4a06a7cb.css" data-n-g="" />
+    <link rel="stylesheet" href="{{base_path}}/assets/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script src="{{base_path}}/assets/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <style>
+        .spn {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="page-container">
+        {% include 'navigation.twig' %}
+        <header id="page-header" class="pageheader">
+            <div class="content-header">
+                <div class="navbar-header">
+                    <button type="button" class="btn-bars btn">
+                        <span class="ti-menu"></span>
+                    </button>
+                    <div class="app-title">Ön Başvurular</div>
+                    <div class="mobile-nav">
+                        <button class="btn" type="button" id="mobileBtn">
+                            <i class="ti-layout-grid2-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="main-container">
+            
+            
+            
+            
+            <div class="content bg-light">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Firma İsmi</th>
+                            <th>Firma Telefon</th>
+                            <th>Şahıs Telefon</th>
+                            <th>Başvuru Tarihi</th>
+                            <th>Geçmiş Taksitler</th>
+                            <th>Gelecek Taksitler</th>
+                            <th>Taksit Sayısı</th>
+                            <th>Toplam Ücret</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rapor in raporlar %}
+                            <tr>
+                                <td>{{ rapor.data.company_name }} {{ rapor.data.rented_stand_area_id }}</td>
+                                <td>{{ rapor.data.company_phone }}</td>
+                                <td>{{ rapor.data.mobile_phone }}</td>
+                                <td>{{ rapor.data.application_start_date|date("Y-m-d H:i") }}</td>
+                                <td>
+                                    {% for past in rapor.past %}
+                                        {% if past is not null and past is not empty %}
+                                            <ul class="m-0 p-0" style="list-style: none">
+                                                <span class="badge text-bg-danger">{{ past }}</span>
+                                            </ul>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for future in rapor.future %}
+                                        {% if future is not null and future is not empty %}
+                                            <ul class="m-0 p-0" style="list-style: none">
+                                                <li>
+                                                    <span class="badge text-bg-success">{{ future }}</span>
+                                                </li>
+                                            </ul>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% if rapor.data.hepsi_odendi != 1 %}
+                                        {{ rapor.installmentPrice }}₺ <span class="badge text-bg-info">(x{{ rapor.installmentCount }})</span>
+                                    {% else %}
+                                        <span class="badge text-bg-secondary">Bulunmamaktadır.</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ rapor.totalPrice }}₺</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+    </div>
+    </div>
+    </main>
+    <footer id="page-footer" class="pagefooter">
+    </footer>
+
+    </div>
+
+    <script type="text/javascript" src="{{base_path}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <div class="modal" tabindex="-1" id="applicationDetailModal">
+
+    </div>
+</body>
+
+</html>

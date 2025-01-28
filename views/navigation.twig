@@ -1,0 +1,71 @@
+<!-- Sidebar -->
+ <!-- Font Awesome --> 
+<nav id="sidebar" class="sidenav">
+    <div class="sidebar-wrapper">
+        <div class="profile-sidebar">
+            <div class="avatar alp-b"><span>B</span></div>
+            <div class="profile-name">
+                Saha Expo Stand Başvuruları 
+            </div>
+        </div>
+        <ul class="main-menu" id="menus">
+            <li></li>
+            <li class="header">Stand Başvuru İçerikleri</li>
+            <li>
+                <a href="{{urlFor('preApplication')}}">
+                    <span class="icon fa fa-cog"></span>
+                    Ön Başvurular
+                </a>
+            </li>
+            <li>
+                <a href="{{urlFor('continuingApplication')}}">
+                    <span class="icon fa fa-cog"></span>
+                    Başvurusu Sürecindekiler
+                </a>
+            </li>
+            <li>
+                <a href="{{urlFor('raport')}}">
+                    <span class="icon fa fa-cog"></span>
+                    Raporlar
+                </a>
+            </li>
+            <li class="has-dropdown">
+                <a href="#" class="dropdown-toggle">
+                    <span class="icon fa fa-cog"></span>
+                    Ayarlar
+                </a>
+                <ul class="dropdown-menu" style="display: none;">
+                    <li><a href="{{urlFor('smtpAyari')}}">SMTP Ayarı</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="{{urlFor('logout')}}">
+                    <span class="icon fa fa-cog"></span>
+                    Çıkış Yap
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    $(document).ready(function(){
+        $(".dropdown-toggle").click(function(e){
+            e.preventDefault();
+            $(this).siblings(".dropdown-menu").slideToggle();
+        });
+
+        $(".dropdown-menu").css("position", "absolute");
+    });
+</script>
+
+<style>
+    .dropdown-menu {
+        position: absolute;
+        width: 100%;
+        z-index: 1000;
+    }
+    .has-dropdown {
+        position: relative;
+    }
+</style>

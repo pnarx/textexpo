@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Basamak Bilişim İçerik Yönetim Sistemi</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/_next/daebdf84909b4a06a7cb.css" data-n-g="" />
+    <link rel="stylesheet" href="{{base_path}}/assets/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script src="{{base_path}}/assets/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div id="page-container">
+        {% include 'navigation.twig' %}
+        <header id="page-header" class="pageheader">
+            <div class="content-header">
+                <div class="navbar-header">
+                    <button type="button" class="btn-bars btn">
+                        <span class="ti-menu"></span>
+                    </button>
+                    <div class="app-title">Başvuru Sürecindekiler</div>
+                    <div class="mobile-nav">
+                        <button class="btn" type="button" id="mobileBtn">
+                            <i class="ti-layout-grid2-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="main-container">
+
+            <div class="content bg-light">
+
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-success">Excel'e Aktar</button>
+                    </div>
+                </div>
+
+                <table class="table custom-table mt-3">
+                    <thead>
+                        <tr>
+                            <th class="text-primary">Adı Soyadı</th>
+                            <th class="text-primary">Şirket İsmi</th>
+                            <th class="text-primary">Görevi</th>
+                            <th class="text-primary">Şirket Telefon</th>
+                            <th class="text-primary">Başvuru Tarihi</th>
+                            <th class="text-primary">Onaylanma Tarihi</th>
+                            <th class="text-primary" style="width: 175px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if applications.data is not empty %}
+                            {% for application in applications.data %}
+                                <tr style="height: 75px;">
+                                    <th>
+                                        <div style="height: 75px;" class="d-flex justify-content-start align-items-center">
+                                           {{ application.full_name }}
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="height: 75px;" class="d-flex justify-content-start align-items-center">
+                                            {{ application.company_name }}
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="height: 75px;" class="d-flex justify-content-start align-items-center">
+                                            {{ application.duty }}
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="height: 75px;" class="d-flex justify-content-start align-items-center">
+                                            {{ application.company_phone }}
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="height: 75px;" class="d-flex justify-content-start align-items-center">
+                                            {{ application.created_at|date('Y-m-d H:i') }}
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="height: 75px;" class="d-flex justify-content-start align-items-center">
+                                            {{ application.updated_at|date('Y-m-d H:i') }}
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div style="height: 75px;" class="d-flex justify-content-start align-items-center">
+                                            <a href="{{urlFor('applicationDetail', { 'token': application.token })}}">
+                                                <button class="btn btn-primary">Detay</button>
+                                            </a>
+                                        </div>
+                                    </th>
+                                </tr>
+                           {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="6">
+                                    <div class="alert alert-danger" role="alert">{{applications.message}}</div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    </div>
+    </main>
+    <footer id="page-footer" class="pagefooter">
+    </footer>
+
+    </div>
+    
+    <script type="text/javascript" src="{{base_path}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <div class="modal" tabindex="-1" id="applicationDetailModal">
+        
+    </div>
+</body>
+
+</html>

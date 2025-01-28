@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Basamak Bilişim İçerik Yönetim Sistemi</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/_next/daebdf84909b4a06a7cb.css" data-n-g="" />
+    <link rel="stylesheet" href="{{base_path}}/assets/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script src="{{base_path}}/assets/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <style>
+        .spn {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="page-container">
+        {% include 'navigation.twig' %}
+        <header id="page-header" class="pageheader">
+            <div class="content-header">
+                <div class="navbar-header">
+                    <button type="button" class="btn-bars btn">
+                        <span class="ti-menu"></span>
+                    </button>
+                    <div class="app-title">Ön Başvurular</div>
+                    <div class="mobile-nav">
+                        <button class="btn" type="button" id="mobileBtn">
+                            <i class="ti-layout-grid2-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="main-container">
+            <div class="content bg-light">
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-primary">Adı Soyadı</th>
+                            <th scope="col" class="text-primary">Şirket İsmi</th>
+                            <th scope="col" class="text-primary">Görevi</th>
+                            <th scope="col" class="text-primary">Şirket Telefon</th>
+                            <th scope="col" class="text-primary">Başvuru Tarihi</th>
+                            <th scope="col" class="text-primary">Atanan Kişi</th>
+                            <th scope="col" class="text-primary" style="width: 175px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableContent">
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    </div>
+    </main>
+    <footer id="page-footer" class="pagefooter">
+    </footer>
+
+    </div>
+    
+    
+
+    <script type="text/javascript" src="{{base_path}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            function parseDate(date) {
+                date = date.toString()
+                date = date.padStart(2, '0')
+                return date
+            }
+
+            $.ajax({
+                url: '{{urlFor('getPreApplications')}}',
+                method: 'GET',
+                data: {
+                    'page': 0
+                },
+                success: (response) => {
+                    if (response.data.length > 0) {
+                        response.data.forEach(item => {
+                            renderTable(item)
+                        });
+                    } else {
+                        $("#tableContent").append(`
+                            <tr>
+                                <td colspan="11">
+                                    <div class="alert alert-danger" role="alert">Ön başvuru bulunamadı.</div>
+                                </td>
+                            </tr>
+                        `)
+                    }
+                    
+                }
+            })
+
+            function modalRender(data) {
+                return `
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">${data.company_name} Başvurusu</h5>
+                                <button type="button" class="btn-close closeApplicationBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <li><b>Adı Soyadı:</b> ${data.full_name}</li>
+                                    <li><b>Şirket İsmi:</b> ${data.company_name}</li>
+                                    <li><b>Görevi:</b> ${data.duty}</li>
+                                    <li><b>Şirket Web Sitesi:</b> ${data.company_web_site}</li>
+                                    <li><b>E-Posta:</b> ${data.email}</li>
+                                    <li><b>Şirket Telefon:</b> ${data.company_phone}</li>
+                                    <li><b>Şahıs Telefon:</b> ${data.mobile_phone}</li>
+                                    <li><b>Soru:</b> ${data.question}</li>
+                                    <li><b>Mesaj:</b> ${data.message}</li>
+                                    <li><b>Başvuru Tarihi:</b> ${data.created_at}</li>
+                                <ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary closeApplicationBtn" data-bs-dismiss="modal">Kapat</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+
+            $(document).on('click', ".showDetail", function() {
+                let applicationId = $(this).data('itemId');
+                let application = [];
+
+                $.ajax({
+                    url: '{{urlFor('getPreApplicationDetail')}}',
+                    type: 'POST',
+                    data: {
+                        'applicationId': applicationId
+                    },
+                    success: (response) => {
+                        let {
+                            data
+                        } = response
+                        
+                        $("#applicationDetailModal").show()
+                        $("#applicationDetailModal").html(modalRender(data))
+                    }
+                })
+            })
+
+            function updateUrl(page) {
+                const newUrl = window.location.pathname + '?page=' + page;
+                history.pushState({
+                    page: page
+                }, '', newUrl);
+            }
+
+            $(document).on('click', '.approvalApplicationBtn', function() {
+                let applicationId = $(this).data('itemId')
+
+                swal({
+                    title: 'Onaylamak İstiyor Musunuz?',
+                    text: 'Şirketi onaylamak istiyor musunuz?',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Evet',
+                    showCancelButton: true,
+                    cancelButtonText: 'Hayır'
+                }).then(response => {
+                    if (response.value) {
+                        $.ajax({
+                            url: '{{urlFor('approvalPreApplication')}}',
+                            beforeSend: function() {
+                                $(".onayBtn"+applicationId).hide()
+                                $(".spn-"+applicationId).show() 
+                            },
+                            method: 'POST',
+                            data: {
+                                "applicationId": applicationId
+                            },
+                            success: (response) => {
+                                $.ajax({
+                                    url: '{{urlFor('getPreApplications')}}',
+                                    method: 'GET',
+                                    data: {
+                                        'page': 0
+                                    },
+                                    success: (response) => {
+                                        $("#tableContent").html('')
+                                        
+                                        if (response.data.length > 0) {
+                                            response.data.forEach(item => {
+                                                renderTable(item)
+                                            });
+                                        } else {
+                                            $("#tableContent").append(`
+                                                <tr>
+                                                    <td colspan="11">
+                                                        <div class="alert alert-danger" role="alert">Ön başvuru bulunamadı.</div>
+                                                    </td>
+                                                </tr>
+                                            `)
+                                        }
+                                    }
+                                })
+        
+                            }
+                        })
+                    }
+
+                })
+            })
+            
+            $(document).on('click', '.denyButton', function() {
+
+            })
+
+            $(document).on('click', '.closeApplicationBtn', () => {
+                $("#applicationDetailModal").hide()
+            })
+            
+            function reloadTablo() {
+                
+            }
+
+            function renderTable(item) {
+                let date = new Date(item.pre_application.created_at)
+                let formatDate = date.getFullYear() + "-" + parseDate(date.getMonth() + 1) + "-" + parseDate(date.getDate()) + " " + parseDate(date.getHours()) + ":" + parseDate(date.getMinutes())
+                
+                let userFullName = item.user != false ? item.user.first_name + " " + item.user.last_name : 'Henüz onaylanmamış'
+                
+                $("#tableContent").append(`
+                    <tr style="height: 75px">
+                        <td>
+                            <div style="height: 75px" class="d-flex align-items-center gap-2 align-items-center">
+                                ${item.pre_application.status == 'active' ? '<img src="/public/assets/images/icons/checked.svg" width="20px" />' : ''} ${item.pre_application.full_name} 
+                            </div>
+                        </td>
+                        <td>
+                            <div style="height: 75px" class="d-flex align-items-center">
+                                ${item.pre_application.company_name}
+                            </div>
+                        </td>
+                        <td>
+                            <div style="height: 75px" class="d-flex align-items-center">
+                                ${item.pre_application.duty}
+                            </div>
+                        </td>
+                        <td>
+                            <div style="height: 75px" class="d-flex align-items-center">
+                                ${item.pre_application.company_phone}
+                            </div>
+                        </td>
+                        <td>
+                            <div style="height: 75px" class="d-flex align-items-center">
+                                ${formatDate}
+                            </div>
+                        </td>
+                        <td>
+                            <div style="height: 75px" class="d-flex align-items-center">
+                                ${userFullName}
+                            </div>
+                        </td>
+                        <td>
+                            <div style="height: 75px;" class="d-flex align-items-center gap-3">
+                                
+                                <button class="btn btn-info showDetail" data-item-id="${item.pre_application.id}">Detay</button>
+                                ${item.pre_application.status == 'active' ? `<button class="btn btn-success">Onaylandı</button>` : `<button class="btn btn-success approvalApplicationBtn d-flex align-items-center gap-2" data-item-id="${item.pre_application.id}"><span class="onayBtn${item.pre_application.id}">Onayla</span> <div class="spinner-border spn spn-${item.pre_application.id}" role="status"></div></button>`}
+                            </div>
+                        </td>
+                    </tr>
+                `)
+            }
+        });
+    </script>
+
+<script type="text/javascript" src="{{base_path}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.0.9/dist/sweetalert2.all.js"></script>
+    <div class="modal" tabindex="-1" id="applicationDetailModal">
+
+    </div>
+</body>
+
+</html>

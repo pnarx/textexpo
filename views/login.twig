@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Saha Expo ADmin Giriş</title>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="x-ua-compatible">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<link rel="stylesheet" type="text/css" href="{{base_path}}/assets/css/bootstrap-admin.min.css">
+	<link rel="stylesheet" type="text/css" href="{{base_path}}/assets/css/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="{{base_path}}/assets/css/style-1.css">
+</head>
+<body>
+    
+    <div id="page-container2" style="background: url('//main.dernekweb.com/public/resources/admin/images/background-1.jpg') no-repeat center; background-size: cover">
+<div class="page-helper">
+<div class="form-container">
+	<div class="text-center"><img src="//main.dernekweb.com/public/resources/admin/images/logo.png" width="250" style="margin-bottom: 70px" alt="Muhammed Kayar"></div>
+			<form class="login-box" id="loginAdminForm">
+				<div class="form-group">
+					<label for="email">Kullanıcı Adınız</label>
+					<input type="text" class="form-control" name="14cb16c" id="email" placeholder="">
+				</div>
+				<div class="form-group">
+					<label for="password">Şifreniz</label>
+					<input type="password" class="form-control" name="a6b2fbf" id="password">
+				</div>
+				<div class="g-recaptcha mt-3" data-sitekey="6LdI8tMnAAAAAFNXQCjq-XwTsYV8uW0XUAVuNByx"></div>
+				<div id="alertMessage"></div>
+				<button type="submit" class="btn btn-block btn-alt-primary mt-3">Oturum Açın</button>
+			</form>
+		</div></div>
+		<div class="powered"><a href="">© 2019 - Basamak Bilişim</a></div>
+</div>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+		$("#alertMessage").hide()
+        $("#loginAdminForm").on('submit', function(e) {
+            e.preventDefault()
+
+            $.ajax({
+                url: 'login',
+                method: 'POST',
+                data: {
+                    form: $(this).serializeArray()
+                },
+                success: (response) => {					
+                    if (!response.status) {						
+						$("#alertMessage").show()
+						$("#alertMessage").text(response.message)
+					}
+
+					if (response.status) {
+						window.location.href = "/basvuruadmin/on-basvurular"
+					}
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

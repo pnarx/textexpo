@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+  <style type="text/css">
+    body {
+      font-size: 7px;
+      
+    }
+    table {
+      border-collapse: collapse;
+      page-break-after: always;
+      table-layout: fixed;
+      width: 100%;
+      white-space: nowrap;
+      
+      
+    }
+    
+    b {
+        font-weight: bolder;
+    }
+    
+    table td {
+      color: #000000;
+      font-family: 'Calibri';
+      background-color: #FFFFFF
+      font-weight: 900;
+    }
+    
+    .footer {
+        background-color: #365F92;
+        color: white;
+    }
+
+    table td.fillColumn {
+        background-color: #FFFFCC
+    }
+    
+    table td.pr-0 {
+        padding-right: 0 !important;
+    }
+    
+    table td.p-0 {
+        padding: 0 !important;
+    }
+    
+    table td div.p-0 {
+        padding: 0 !important;
+    }
+
+    table td.pl-0 {
+        padding-left: 0 !important;
+    }
+
+    table td.text-right {
+        text-align: right;
+    }
+    
+    table td.text-left {
+        text-align: left;
+    }
+    
+    .text-center {
+        text-align: center !important;
+    }
+    
+    table td. {
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+    }
+    
+    table td.ortala-right  {
+        vertical-align: middle !important;
+        text-align: right !important;
+        display: table-cell !important;
+    }
+
+    table td.text-left  {
+        vertical-align: middle !important;
+        text-align: left !important;
+        display: table-cell !important;
+    }
+
+
+    .h20 {
+      height: 20px;
+      display: table-cell; 
+      vertical-align: middle;
+      display: flex!important;
+      justify-content: center!important;
+      align-items: center!important;
+      vertical-align: middle!important;
+        line-height: 20px;
+    }
+
+    .h15 {
+      height: 15px;
+      display: table-cell; 
+      vertical-align: middle;
+      display: flex!important;
+      justify-content: center!important;
+      align-items: center!important;
+      vertical-align: middle!important;
+      line-height: 15px;
+    }
+    
+    .h12 {
+      height: 12px;
+      display: table-cell!important; 
+      vertical-align: middle!important;
+      display: flex!important;
+      justify-content: center!important;
+      align-items: center!important;
+      vertical-align: middle!important;
+      line-height: 12px;
+    }
+    
+    .h10 {
+      height: 10px;
+      line-height: 10px;
+    }
+    
+    .textDanger {
+        color: red;
+    }
+    
+    table td.border-right {border-right: 1px solid #000;}
+    table td.border-left {border-left: 1px solid #000;}
+    table td.border-bottom {border-bottom: 1px solid #000;}
+    table td.border-top {border-top: 1px solid #000;}
+
+    table td {
+      border: 1px solid #000 !important;
+      border-collapse: collapse;
+
+      vertical-align: middle !important;
+    }
+    
+    table td.no-border-right, table th.no-border-right {
+      border-right: none !important;
+    }
+    
+    table td.no-border-left, table th.no-border-left {
+      border-left: none !important;
+    }
+    
+    table td.no-border-top, table th.no-border-top {
+      border-top: none !important;
+    }
+    
+    table td.no-border-bottom, table th.no-border-bottom {
+      border-bottom: none !important;
+    }
+    
+    table td.no-border {
+        border: none;
+    }
+    
+    p, span {
+        padding: 0!important;
+        margin: 0!important;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <table>
+    <tbody>
+      <tr class="row0">
+        <td class="column0 style113 null style114 border-right" style="height: 50px;" colspan="4">
+          <div><img  src="https://koyweb.xyz/public/assets/images/saha-istanbul-logo-1.png" border="0" /></div>
+        </td>
+
+        <td colspan="10" class="text-center" style="font-size: 8px;font-weight: semibold;" >
+            <div style="heigt: 50px;">
+                <span style="font-size: 9px; font-weight: bold">SAHA 2026</span> <br /> <br />ULUSLARARASI SAVUNMA, HAVACILIK VE UZAY SANAYİ FUARI<br />
+            5-9 MAYIS 2026 / İSTANBUL FUAR MERKEZİ<br />
+            EK 1 - ALAN KİRALAMA SÖZLEŞMESİ 
+            </div>
+        </td>
+        <td class="column0 style113 null style114 border-right" colspan="4">
+          <div style="position: relative;"><img style="" src="https://koyweb.xyz/public/assets/images/saha-istanbul-logo-1.png" border="0" /></div>
+        </td>
+      </tr>
+
+      <tr class="row1">
+        <td class="h15 text-left pl-0 fillColumn" colspan="2">Firma Adı</td>
+        <td class="h15 text-left pl-0" colspan="16">{{firma_adi}}</td>
+      </tr>
+      <tr class="row2">
+        <td class="h15 text-left fillColumn" colspan="2"><div>Adresi</div></td>
+        <td class="h15 text-left" colspan="16"><div>{{adresi}}</div></td>
+      </tr>
+      <tr class="row3">
+        <td class="text-left h15 fillColumn" colspan="2"><div>İlçe</div></td>
+        <td class="column2 h15 style136 null style137" colspan="4">{{ilce}}</td>
+        <td class="column6 h15 style23 s fillColumn" colspan="3">Şehir</td>
+        <td class="column7 h15 style119 null style137" colspan="4">{{sehir}}</td>
+        <td class="column12 h15 style205 s style206 fillColumn" colspan="2">Ülke</td>
+        <td class="column14 h15 style119 null style121" colspan="4">{{ulke}}</td>
+        <td class="column18 h15 style3 null"></td>
+      </tr>
+      <tr class="row4">
+        <td class="column0 h15 style134 s style135 fillColumn" colspan="2">İş Tel.</td>
+        <td class="column2 h15 style136 null style137" colspan="4">{{is_tel}}</td>
+        <!-- Web Sitesi alanına daha fazla yer ver -->
+        <td class="column6 h15 style24 s fillColumn" colspan="3">Web Sitesi</td>
+        <td class="column7 h15 style122 null style198" colspan="4">{{web_sitesi}}</td>
+        <td class="column12 h15 style126 s style127 fillColumn" colspan="2">Şirket E-Posta</td>
+        <td class="column14 h15 style122 null style121" colspan="4">{{sirket_eposta}}</td>
+        <td class="column18 h15 style3 null"></td>
+    </tr>
+    
+      <tr class="row5">
+        <td class="column0 h15 style199 s style200 fillColumn" colspan="2">Firma Yetkilisi</td>
+        <td class="column2 h15 style136 null style137" colspan="4">{{firma_yetkilisi}}</td>
+        <td class="column6 h15 style25 s  fillColumn" colspan="3">Unvanı</td>
+        <td class="column7 h15 style119 null style137" colspan="4">{{unvani}}</td>
+        <td class="column12 h15 style181 s style182 fillColumn" colspan="2">Cep Tel.</td>
+        <td class="column14 h15 style123 null style125" colspan="4">{{cep_tel}}</td>
+        <td class="column18 h15 style3 null"></td>
+      </tr>
+      <tr class="row6">
+        <td class="column0 h15 style183 s style184 fillColumn" colspan="2">Yetkili E-Posta</td>
+        <td class="column2 h15 style136 null style137" colspan="4">{{yetkili_eposta}}</td>
+        <td class="column6 h15 style24 s fillColumn" colspan="3">Vergi No</td>
+        <td class="column7 h15 style119 null style137" colspan="4">{{vergi_no}}</td>
+        <td class="h15 fillColumn" colspan="2">Vergi Dairesi</td>
+        <td class="column14 h15 style119 null style121" colspan="4">{{vergi_dairesi}}</td>
+        <td class="column18 h15 style3 null"></td>
+      </tr>
+      <tr class="row7">
+        <td class="column0 style199 s style200 fillColumn" colspan="2">Fuar Sorumlusu / Unvanı</td>
+        <td class="column2 style136 null style137" colspan="4">{{fuar_sorumlusu_unvani}}</td>
+        <td class="column6 style26 s fillColumn" colspan="3">Fuar Sorumlusu Cep Tel</td>
+        <td class="column7 style119 null style137" colspan="4">{{fuar_sorumlusu_cep_tel}}</td>
+        <td class="column12 style181 s style182 fillColumn" colspan="2">Fuar Sorumlusu E-Posta</td>
+        <td class="column14 style201 null style203" colspan="4">{{fuar_sorumlusu_eposta}}</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row8">
+        <td class="fillColumn" colspan="2">Finans Sorumlusu</td>
+        <td class="" colspan="4">{{finans_sorumlusu_title}}</td>
+        <td class="fillColumn" colspan="3">Finans Sorumlusu Cep Tel</td>
+        <td class="" colspan="4">{{fair_manager_mobile_phone}}</td>
+        <td class="fillColumn" colspan="2">Finans Sorumlusu E-Posta</td>
+        <td class="" colspan="4">{{fair_manager_email}}</td>
+        <td class=""></td>
+      </tr>
+      <tr class="row9">
+        <td class="column0 h15 style183 s style184 fillColumn" colspan="2">Nace Kodu</td>
+        <td class="column2 h15 style136 null style137" colspan="4">{{nace_kod}}</td>
+        <td class="column6 h15 style27 s fillColumn" colspan="3">Mersis No</td>
+        <td class="column7 h15 style186 null style1" colspan="4">{{mersis_no}}</td>
+        <td class="column12 h15 style183 s style185 fillColumn" colspan="2">Kep Adresi</td>
+        <td class="column14 h15 style189 null style191" colspan="4">{{kep_adresi}}</td>
+        <td class="column18 h15 style3 null"></td>
+      </tr>
+      <tr class="row10">
+        <td class="h10 fillColumn" colspan="2">Mikro / Kobi / Kobi Üstü</td>
+        <td class="column2 h10 style157 null style151" colspan="4">{{mikro_kobs_kobi_ustu}}</td>
+        <td class="column6 h10 style27 s fillColumn" colspan="3">SAHA İstanbul üyelik durumu</td>
+        <td class="column7 h10 style151 null style151" colspan="4">{{saha_istanbul_uyelik_durumu}}</td>
+        <td class="column12 h10 style152 s style153 fillColumn" colspan="2">SAHA EXPO Satış Sorumlusu</td>
+        <td class="column14 h10 style154 null style156" colspan="4">{{saha_expo_satis}}</td>
+        <td class="column18 h10 style3 null"></td>
+      </tr>
+      <tr class="row11">
+        <td class="column0 style58 null style59" colspan="18"></td>
+        <td class="column18 style1 null"></td>
+      </tr>
+      <tr class="row12">
+        <td class=" text-center h15 fillColumn" colspan="6">KİRALANAN STANT ALANI</td>
+        <td class="fillColumn p-0" colspan="4" rowspan="2">
+            <div class="p-0 text-center ortala">Birim</div>
+        </td>
+        <td class="fillColumn ortala" colspan="6" rowspan="2">
+            <div class="text-center">Fiyatı ( TL )</div>
+        </td>
+        <td class="fillColumn text-center" colspan="3" rowspan="2">
+            <div>Tutar ( TL )</div>
+        </td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row13">
+          <td class="fillColumn" colspan="3"><div>Salon ve Stant Numarası</div></td>
+          <td class="fillColumn" colspan="3"><div>Paket Stant / Özel Dekorasyon</div></td>
+          <td class="ortala"><div></div></td>
+        </tr>
+        <tr class="row14">
+          <td class="h15" colspan="3" rowspan="5"><div>{{salon_ve_stand_no}}</div></td>
+          <td class="text-center h15" colspan="3"><div>Özel Dekorasyon</div></td>
+         <td class="h15 text-center" colspan="3">{{ozel_dekorasyon_brim}}</td>
+
+
+          <td class="h15 text-center"><div>m2</div></td>
+          <td class="h15 text-center" colspan="6"><div>{{ozel_dekarasyon_fiyat}}</div></td>
+          <td class="h15 text-right" colspan="3"><div>{{ozel_dekarasyon_toplam_fiyat}}</div></td>
+          <td class="h1 text-center5"><div></div></td>
+        </tr>
+        <tr class="row15">
+          <td class="h15 text-center" colspan="3"><div>Sponsorluk</div></td>
+          <td class="h15 text-center" colspan="3"><div>{{sponsorluk_brim}}</div></td>
+          <td class="h15 text-center"><div>m2</div></td>
+          <td class="h15 text-center" colspan="6"><div>{{sponsorluk_fiyat}}</div></td>
+          <td class="h15 text-right" colspan="3"><div>{{sponsorluk_toplam_fiyat}}</div></td>
+          <td class="h15"><div></div></td>
+        </tr>
+        <tr class="row16">
+          <td class="h10 text-center" colspan="3"><div>Meydana Bakan Cephe Farkı</div></td>
+          <td class="h15 text-center" colspan="3"><div>{{meydana_bakan_cephe_farki_brim}}</div></td>
+          <td class="h15 text-center">m</td>
+          <td class="h15 text-center" colspan="6"><div>{{meydana_bakan_cephe_farki_fiyat}}</div></td>
+          <td class="h15 text-right" colspan="3"><div>{{meydana_bakan_cephe_farki_toplam_fiyat}}</div></td>
+          <td class="h15"><div></div></td>
+        </tr>
+        <tr class="row17">
+          <td class="h15 text-center" colspan="3"><div>Çift Kat Stant Farkı</div></td>
+          <td class="h15 text-center" colspan="3"><div>{{cift_kat_stant_farki_brim}}</div></td>
+          <td class="h15 text-center"><div>m2</div></td>
+          <td class="h15 text-center" colspan="6"><div>{{cift_kat_stant_farki_fiyat}}</div></td>
+          <td class="ortala-right h15" colspan="3"><div>{{cift_kat_stant_farki_toplam_fiyat}}</div></td>
+          <td class="ortala-right h15"><div></div></td>
+        </tr>
+        <tr class="row18">
+          <td class="h15 text-center" colspan="3"><div>Dış Alan</div></td>
+          <td class="h15 text-center" colspan="3"><div>{{dis_alan_brim}}</div></td>
+          <td class="h15 text-center"><div>m2</div></td>
+          <td class="h15 text-center" colspan="6"><div>{{dis_alan_fiyat}}</div></td>
+          <td class="ortala-right h15" colspan="3"><div>{{dis_alan_toplam_fiyat}}</div></td>
+          <td class="ortala-right h15"><div></div></td>
+        </tr>
+
+      <tr class="row19">
+        <td class="column0 style58 null style59" colspan="18"></td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row20">
+        <td class=" text-center h15 fillColumn" colspan="9">Hizmet Bedelleri İçeriği</td>
+        <td class="text-center h15 fillColumn" colspan="11">Stant Büyüklüğüne Göre Alınacak Hizmet Bedeli Tutarı</td>
+        <td class="column18 style57 null style57 h15" rowspan="3"></td>
+      </tr>
+      <tr class="row21">
+        <td class="ortala" colspan="9" rowspan="3">{{hizmet_sozlesmesi_icerigi}}</td>
+        <td class="ortala" colspan="5">m2 Başına Hizmet Bedeli</td>
+        <td class="text-center ortala" colspan="2">800</td>
+        <td class="h12 text-right" colspan="2">{{m2_basina_hizmet_bedeli}}</td>
+        
+      </tr>
+      <tr class="row22">
+        <td colspan="5">m2 Başına Katı Atık Bedeli</td>
+        <td class="text-center" colspan="2">300</td>
+        <td class="text-right h12" colspan="2">{{m2_basina_kati_atik_bedeli}}</td>
+        
+      </tr>
+      <tr class="row23">
+        <td class="column7 style232 s style231 no-border border-right border-bottom" colspan="5">Bir Yıllık Online Hizmet Bedeli</td>
+        <td class="text-center " colspan="2">{{bir_yillik_online_hizmet_bedeli}}</td>
+        <td class="text-right h12" colspan="2">{{bir_yillik_online_hizmet_bedeli}}</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row24">
+        <td class="column0 style249 s style251 no-border border-top border-left border-right textDanger text-center" colspan="11">ÖNEMLİ NOTLAR</td>
+        <td class="column11 style3 null no-border"></td>
+        <td class="column12 style118 s style118 h12 no-border border-right text-right pr-0" colspan="4">TOPLAM TL</td>
+        <td class="text-right h12" colspan="2">{{bir_yillik_online_hizmet_bedeli}}</td>
+      </tr>
+      <tr class="row25">
+        <td class="column0 style70 s style76 no-border border-bottom border-right border-left textDanger" colspan="11" rowspan="4">- Özel dekorasyon stantlar açık cephelerinin en
+          fazla %30'unu duvarla kapatabilir. - Özel dekorasyon bitişik nizam stantlarda katılımcılar, komşu standın
+          yüksekliğinden fazla olan cephesinin arka tarafını, komşu standın dekoruna uygun renkte malzeme ile kapatmakla
+          yükümlüdür. - Paket stant (15-21 m2) ile katılım sağlayan firmalara; 1 masa, 4 sandalye, 1 banko, Halı,
+          Alınlık yazısı, Dijital baskı logo, Aydınlatma, 1m2 kilitli depo alanı ve 5kW elektrik sağlanacaktır.</td>
+        <td class="column11 style3 null no-border"></td>
+        <td class="column12 style118 s style118 h12 no-border border-right text-right pr-0" style="vertical-align: middle;" colspan="4">KDV {{kdv_orani}}</td>
+        <!-- XX -->
+        <td class="text-right h15" colspan="2">{{kdv}}</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row26">
+        <td class="column11 style3 null no-border"></td>
+        <td class="column12 style69 s style69 no-border border-right text-right pr-0" colspan="4">Sözleşme Damga Vergisi </td>
+        <td class="text-right" rowspan="2" colspan="2">
+            <div style="line-height: 1;">{{damga_vergisi}}</div>
+        </td>
+        <td class="no-border" rowspan="2"></td>
+      </tr>
+      <tr class="row27">
+        <td class="column11 style3 null no-border"></td>
+        <td class="column12 style69 s style69 no-border border-right text-right pr-0" colspan="4">(KDV Hariç Toplamın binde 1,89'u)</td>
+      </tr>
+      <tr class="row28">
+        <td class="column11 style3 null no-border"></td>
+        <td class="column12 style3 null no-border"></td>
+        <td class="column13 style67 s no-border border-right  text-right pr-0 style67" colspan="3">GENEL TOPLAM TL</td>
+        <td class="border-top fillColumn h12 text-right" colspan="3">
+            {{genel_toplam}}
+        </td>
+        <td class="column18 style1 null"></td>
+      </tr>
+      <tr class="row29">
+        <td class="no-border border-left" colspan="18"></td>
+        <td class="column18 style115 null style115" rowspan="6"></td>
+      </tr>
+      <tr class="row30">
+        <td class="h12 fillColumn" colspan="5">BANKA BİLGİLERİ</td>
+        <td class="h12 fillColumn text-center" colspan="13">ÖDEME PLANI</td>
+      </tr>
+      <tr class="row31">
+        <td class="h12 fillColumn" colspan="5">BANKA ADI: YAPI ve KREDİ BANKASI A.Ş. </td>
+        {{column_title}}
+      </tr>
+      <tr class="row32">
+        <td class="h12 fillColumn" colspan="5">ŞUBESİ: İstanbul Deri Şubesi</td>
+        {{column_content}}
+      </tr>
+      <tr class="row33">
+        <td class="h12 fillColumn" colspan="5">IBAN: TR56 0006 7010 0000 0057 7946 00</td>
+        <td class="textDanger ortala" colspan="13">
+            <div>7 gün içerisinde peşinat ödemesinin yapılmaması halinde, alan
+          talep eden farklı bir firmaya kiralanabilir.</div>
+        </td>
+      </tr>
+      <tr class="row34">
+        <td class="column0 style58 null style59"  style="border: none; border-left: 1px solid #000; border-top: 1px solid #000; border-bottom: 1px solid #000"></td>
+        
+      </tr>
+      <tr class="row35">
+        <td class="border-top-2 h12 fillColumn text-center" colspan="8">ZAMAN PLANI</td>
+        <td class="no-border" rowspan="8"></td>
+        <td class="h12 fillColumn text-center" colspan="9">ORGANİZATÖR BİLGİLERİ</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row36">
+        <td class="column0 style88 s style89 no-border border-right border-left border-top fillColumn" colspan="4">Dekorasyon projesini onaylatma</td>
+        <td class="textDanger text-center" colspan="4" rowspan="3">
+            <div style="line-height: 1">27 Mart 2026</div>
+            </td>
+        <td class="h15 text-center no-border border-top border-right border-left border-bottom" style="" colspan="9" rowspan="2">SAHA EXPO Fuarcılık Hizmetleri A.Ş.</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row37">
+        <td class="column0 style90 s style91 no-border border-right border-left fillColumn" colspan="4">Katılımcı bilgi formu teslimi</td>
+        <td class="column18 style57 null style57" rowspan="2"></td>
+      </tr>
+      <tr class="row38">
+        <td class="column0 style90 s style91 no-border border-right border-left fillColumn" colspan="4">Yaka kartı bilgileri teslimi</td>
+        <td class="text-center h15 no-border border-right border-left" colspan="9" rowspan="2">Adres<span style="color:#000000; font-family:'Calibri'; font-size:10pt">: </span><span style="font-weight:bold; color:#000000; font-family:'Calibri';"> </span><span style="color:#000000; font-family:'Calibri';">Teknopark İstanbul, Sanayi Mah. Teknopark Bulvarı </span></td>
+      </tr>
+      <tr class="row39">
+        <td class="h15 fillColumn" colspan="4" rowspan="3">
+            <div style="line-height: 1">Stant düzenleme / hazırlık</div>
+        </td>
+        <td class="column4 style92 s style93 no-border border-right border-left textDanger text-center" colspan="4">28 Nisan - 4 Mayıs 2026</td>
+        <td class="no-border"></td>
+      </tr>
+      <tr class="row40">
+        <td class="column4 style94 s style95 no-border border-right border-left textDanger text-center" colspan="4" rowspan="2">Not: 28 Nisan kurulum başlangıç saati 08:30'dur. 4 Mayıs kurulum bitiş saati 12:00'dir</td>
+        <td class="h15 text-center no-border border-right border-left" colspan="9" rowspan="2">No:1/9A Blok, Üst Zemin Kat, No: 104 34906 Pendik / İstanbul</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row41">
+        <td class="column18 style3 null no-border"></td>
+      </tr>
+      <tr class="row42">
+        <td class="h12 fillColumn" colspan="4">Etkinlik alanının boşaltılması</td>
+        <td class="text-center textDanger" colspan="4">10 Mayıs 2026 Pazar saat 15:00'tir.</td>
+        <td class="no-border border-left text-center h12 border-bottom" colspan="5">Vergi Dairesi: Pendik V.D.</td>
+        <td class="column14 style105 s style106 no-border border-right  text-center h12 border-bottom" colspan="4">Vergi Numarası: 739 100 4333</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row43">
+        <td class="no-border border-right border-left" colspan="18"></td>
+        <td></td>
+      </tr>
+      <tr class="row44">
+        <td class="no-border border-right border-left" colspan="18">Fuar Katılım sözleşmesinin koşullarına itiraz etmeksizin tümünü okuyup kabul ettiğimizi, her iki sayfada bulunan firma kaşesi ve yetkili imza ile teyit ederiz.</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row45">
+        <td class="no-border border-right border-left" colspan="18">Fuar Katılım Özel Şartnamesinin de tümünü okuyup kabul ettiğimizi, her sayfanın altına yetkili imza ve son sayfada kaşe ve yetkili imza ile teyit ederiz.</td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row46">
+        <td class="no-border border-right border-left" colspan="18"></td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row47">
+        <td class="fillColumn h12 text-center" colspan="8">
+            KATILIMCI FİRMA YETKİLİSİ ADI SOYADI VE GÖREVİ
+        </td>
+        <td class="fillColumn  h12 text-center" colspan="10">
+            ORGANİZATÖR YETKİLİSİ ADI SOYADI VE GÖREVİ
+        </td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row48">
+        <td class="column0 style48 null style49 h15" colspan="8"></td>
+        <td class="column8 style224 null style49 h15" colspan="10"></td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row49">
+        <td class="column0 style107 null style109" style="height: 60px;" colspan="8"></td>
+        <td class="column8 style225 null style226" style="height: 60px;" colspan="10"></td>
+        <td class="column18 style57 null style57"></td>
+      </tr>
+      <tr class="row56">
+        <td class="text-center" colspan="8"><div>KAŞE, İMZA VE TARİH</div></td>
+        <td class="text-center" colspan="10"><div>KAŞE, İMZA VE TARİH</div></td>
+        <td class="column18 style3 null"></td>
+      </tr>
+      <tr class="row57">
+        <td class="h10 text-left fillColumn" colspan="18"><div>İmza Sirküleri / Vekalet Belgesi sözleşmeye eklenecektir</div>
+        </td>
+        <td class="column18"></td>
+      </tr>
+      <tr class="row58">
+        <td class="footer text-left" colspan="18">
+            <div>BU FUAR 5174 SAYILI KANUN GEREĞİNCE TÜRKİYE ODALAR VE
+          BORSALAR BİRLİĞİ (TOBB) DENETİMİNDE DÜZENLENMEKTEDİR.</div>
+        </td>
+        <td class="column18"></td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+
+<script>
+    
+</script>
+</body>
+</html>

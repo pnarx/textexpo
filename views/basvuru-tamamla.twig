@@ -1,0 +1,290 @@
+{% extends "layout/main.twig" %}
+
+{% block custom_style %}
+    <style>
+        .kontainer {
+  text-align: center;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.iconComplate {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+}
+
+.iconComplate svg {
+  width: 40px;
+  height: 40px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 10px 0;
+}
+
+p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.buttonComplate {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.buttonComplate:hover {
+  background-color: #45a049;
+}
+    </style>
+{% endblock %}
+
+{% block content %}
+        <div class="kontainer py-5">
+        {% if applicationDetail and applicationDetail.status == 'done' %}
+          <div class="kontainer">
+            <div class="card">
+              <div class="iconComplate">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 11l3 3L22 4" />
+                  <path d="M22 4v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9" />
+                </svg>
+              </div>
+              <h1>Başvurunuz Tamamlanmıştır!</h1>
+              <p>Başvurunuz başarıyla alınmıştır. Size en kısa sürede geri dönüş yapılacaktır.</p>
+              <a href="/" class="buttonComplate">Ana Sayfaya Dön</a>
+            </div>
+          </div>
+        {% else %}
+        
+        <div class="kontainer px-5 container-extended">
+
+      <div class="row flex-column-reverse flex-lg-column wide">
+
+        <div class="col-12">
+          <div class="row text-center">
+            <h1 class="textPrimary katilimFormTitle text-center">Stantlı Katılım Başvuru Detayı</h1>
+          </div>
+          <form id="sendApplicationDetailForm" class="mt-3">
+                <div class="row">
+                    <div class="col-md-6 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="companyName">Firma Adı <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="companyName" value="{{application.company_name}}" name="companyName" readonly placeholder="Firma Adı" required />
+                    </div>
+                    <div class="col-md-6 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="address">Adres <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="address1" name="address" placeholder="Adres" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="district">İlçe <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="district1" name="district" placeholder="İlçe" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="city">Şehir <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="city1" name="city" placeholder="Şehir" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="country">Ülke <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="country1" name="country" placeholder="Ülke" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="companyPhone">İş Tel <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="companyPhone" name="companyPhone" value="{{application.company_phone}}" placeholder="İş Tel" readonly required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="companyWebsite">Şirket Web Sitesi <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="companyWebsite1" name="companyWebsite" value="{{application.company_web_site}}" placeholder="Şirket Web Sitesi" readonly required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="companyEmail">Şirket E-Posta <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="companyEmail1" name="companyEmail" placeholder="Şirket E-Posta" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="companyManager">Firma Yetkilisi <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="companyManager1" name="companyManager" placeholder="Firma Yetkilisi" required />
+                    </div>
+                    <div class="col-md-6 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="title">Ünvanı <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="title1" name="title" placeholder="Ünvanı" required />
+                    </div>
+                </div>
+                <div class="mb-3 mt-3 textfield textfield--spacing-strong d-flex flex-column">
+                    <label class="mb-3" for="phoneNumber">Telefon Numarası <span class="text-danger">*</span></label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Telefon Numarası" required />
+                </div>
+                <div class="mb-3 mt-3 textfield textfield--spacing-strong d-flex flex-column">
+                    <label class="mb-3" for="responsibleEmai1">Yetkili Eposta <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="responsibleEmail1" name="responsibleEmail" placeholder="Yetkili Eposta" required />
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="taxNumber">Vergi No <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="taxNumber1" name="taxNumber" placeholder="Vergi No" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="taxOffice">Vergi Dairesi <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="taxOffice1" name="taxOffice" placeholder="Vergi Dairesi" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="taxOffice">Vakıf Mısınız? <span class="text-danger">*</span></label>
+                        <select class="form-select" name="vakifStatus" required>
+                            <option value="0">Hayır</option>
+                            <option value="1">Evet</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="expoManagerTitle">Fuar Sorumlusu / Ünvanı <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="expoManagerTitle1" name="expoManagerTitle" placeholder="Fuar Sorumlusu / Ünvanı" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="expoManagerPhone">Fuar Sorumlusu Cep Tel <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="expoManagerPhone" name="expoManagerPhone" placeholder="Fuar Sorumlusu Cep Tel" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="expoManagerEmail">Fuar Sorumlusu E Posta <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="expoManagerEmail1" name="expoManagerEmail" placeholder="Fuar Sorumlusu E Posta" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="financeManagerOne">Finans Sorumlusu <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="financeManagerTilte" name="financeManagerTitle" placeholder="Finans Sorumlusu" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="financeManagerTwo">Finans Sorumlusu Telefon <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="financeManagerPhone" name="financeManagerPhone" placeholder="Finans Sorumlusu Telefon" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="financeManagerThree">Finans Sorumlusu Email <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="financeManagerEmail" name="financeManagerEmail" placeholder="Finans Sorumlusu Email" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="naceNo">Nace No <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="naceNo1" name="naceNo" placeholder="Nace No" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="mersisNo">Mersis No <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="mersisNo1" name="mersisNo" placeholder="Mersis No" required />
+                    </div>
+                    <div class="col-md-4 mt-3 mb-3 textfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="kepAddress">Kep Adresi <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="kepAddress1" name="kepAddress" placeholder="Kep Adresi" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4 selectfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="companySize1">İşletme Statüsü <span class="text-danger">*</span></label>
+                        <select class="form-control" name="companyStatus" required>
+                            <option>Mikro</option>
+                            <option>Kobi</option>
+                            <option>Kobi Üstü</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-4 selectfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="sahaMembershipStatus1">Saha İstanbul Üyelik Durumu <span class="text-danger">*</span></label>
+                        <select class="form-control" name="memberStatus" required>
+                            <option value="yes">Evet Var</option>
+                            <option value="no">Hayır Yok</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-4 selectfield textfield--spacing-strong d-flex flex-column">
+                        <label class="mb-3" for="sahaExpoSales1">Saha Expo Satış <span class="text-danger">*</span></label>
+                        <select class="form-control" name="expoSales" required>
+                            <option value="yes">Evet</option>
+                            <option value="no">Hayır</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="g-recaptcha mt-3" data-sitekey="6LdI8tMnAAAAAFNXQCjq-XwTsYV8uW0XUAVuNByx"></div>
+                    </div>
+                </div>
+                <button type="submit" data-appearance="info" data-spacing="strong" class="button button-xxl mt-5" tabindex="0">
+                <span class="button-text" id="loadingForm">Başvuruyu Tamamla</span>
+              </button>
+            </form>
+        </div>
+
+      </div>
+    </div>
+        
+            
+        {% endif %}
+    </div>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript" src="{{base_path}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $("#sendApplicationDetailForm").on('submit', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '{{urlFor('doneApplicationStore')}}',
+                    method: 'POST',
+                    data: {
+                        form: $(this).serializeArray(),
+                        applicationId: '{{ application.id }}'
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status) {
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+        });
+        
+        $(document).ready(function() {
+
+
+
+
+            
+            $('#companyPhone, #phoneNumber, #expoManagerPhone, #financeManagerPhone').mask('0 (000) 000 00 00', {
+                translation: {
+                    '0': {pattern: /\d/}
+                },
+                onKeyPress: function(val, e, field, options) {
+                    if (!val.startsWith('0')) {
+                        field.val('0' + val);
+                    }
+                }
+            });
+      })
+    </script>
+{% endblock %}

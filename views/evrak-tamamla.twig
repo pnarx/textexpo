@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Basamak Bilişim İçerik Yönetim Sistemi</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/_next/daebdf84909b4a06a7cb.css" data-n-g="" />
+    <link rel="stylesheet" href="{{base_path}}/assets/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script src="{{base_path}}/assets/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <style>
+        #successMessage {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-container">
+        {% include 'navigation.twig' %}
+        <header id="page-header" class="pageheader">
+            <div class="content-header">
+                <div class="navbar-header">
+                    <button type="button" class="btn-bars btn">
+                        <span class="ti-menu"></span>
+                    </button>
+                    <div class="app-title">Evrak Tamamla</div>
+                    <div class="mobile-nav">
+                        <button class="btn" type="button" id="mobileBtn">
+                            <i class="ti-layout-grid2-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="main-container">
+            <div class="content bg-light">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="m-0 p-0">{{application.company_name}}</h3><br />
+                        <h5 class="text-primary m-0 p-0">{{ applicationDetail.vakif_status ? 'Vakıf' : '' }}</h5>
+                    </div>
+                </div>
+                
+                <div class="row py-3">
+                    <div class="alert alert-success" id="successMessage" role="alert">İşlem Başarılı</div>
+                </div>
+                
+                <div class="row">
+                    
+                    
+                    <form class="col-12 col-md-10 my-5" id="evrakTamamlaForm">
+                        <input type="hidden" name="application_id" value="{{application.id}}" />
+                        <div class="d-flex flex-column">
+                            <div class="col">
+                                <h6 class="text-primary mb-3">Salon ve Stant Numarası</label>
+                                <div class="d-flex align-items-center gap-2 mt-3">
+                                    <input type="text" name="salon_and_stant_no" id="SalonAndStantNo" value="{{rentedStandAreaData.stant_salon_numarasi}}" class="form-control" placeholder="Salon ve Stant Numarası" />
+                                </div>
+                            </div>
+                            <div class="col mt-3">
+                                <h6 class="text-primary mb-3">Özel Dekerasyon</h6>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="col-md-4">
+                                        <label>Birim (m2)</label>
+                                        <input type="text" name="ozel_dekerasyon" id="OzelDekorasyon" value="{{rentedStandAreaData.ozel_dekarasyon_brim}}" class="form-control" placeholder="Birim" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Fiyat</label>
+                                        <input type="text" name="ozel_dekerasyon_price" id="OzelDekorasyonPrice" value="{{rentedStandAreaData.ozel_dekarasyon_fiyat}}" class="form-control" placeholder="Fiyat" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Toplam Fiyat</label>
+                                        <input type="text" name="ozel_dekerasyon_total_price" id="OzelDekorasyonTotalPrice" value="{{rentedStandAreaData.ozel_dekarasyon_toplam_fiyat}}" class="form-control" placeholder="Toplam Fiyat" readony />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mt-3">
+                                <h6 class="text-primary mb-3">Sponsorluk</h6>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="col-md-4">
+                                        <label>Birim (m2)</label>
+                                        <input type="text" name="sponsorluk" id="Sponsorluk" value="{{rentedStandAreaData.sponsorluk_brim}}" class="form-control" placeholder="Birim" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Fiyat</label>
+                                        <input type="text" name="sponsorluk_price" id="SponsorlukPrice" value="{{rentedStandAreaData.sponsorluk_fiyat}}" class="form-control" placeholder="Fiyat" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Toplam Fiyat</label>
+                                        <input type="text" name="sponsorluk_total_price" id="SponsorlukTotalPrice" value="{{rentedStandAreaData.sponsorluk_toplam_fiyat}}" class="form-control" placeholder="Toplam Fiyat" readony />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mt-3">
+                                <h6 class="text-primary mb-3">Meydana Bakan Cephe Farkı</h6>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="col-md-4">
+                                        <label>Birim (m)</label>
+                                        <input type="text" name="meydana_bakan_cephe_farkı" value="{{rentedStandAreaData.meydana_bakan_cephe_farki_brim}}" id="MeydanaBakanCepheFarki" class="form-control" placeholder="Birim" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Fiyat</label>
+                                        <input type="text" name="meydana_bakan_cephe_farkı_price" value="{{rentedStandAreaData.meydana_bakan_cephe_farki_fiyat}}" id="MeydanaBakanCepheFarkiPrice" class="form-control" placeholder="Fiyat" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Toplam Fiyat</label>
+                                        <input type="text" name="meydana_bakan_cephe_farkı_total_price" value="{{rentedStandAreaData.meydana_bakan_cephe_farki_toplam_fiyat}}" id="MeydanaBakanCepheFarkiTotalPrice" class="form-control" placeholder="Toplam Fiyat" readony />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mt-3">
+                                <h6 class="text-primary mb-3">Çift Kat Stand Farkı</h6>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="col-md-4">
+                                        <label>Birim (m2)</label>
+                                        <input type="text" name="cift_kat_farkı" id="CiftKatFarki" value="{{rentedStandAreaData.cift_kat_stand_farki_brim}}" class="form-control" placeholder="Birim" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Fiyat</label>
+                                        <input type="text" name="cift_kat_farkı_price" id="CiftKatFarkiPrice" value="{{rentedStandAreaData.cift_kat_stand_farki_fiyat}}" class="form-control" placeholder="Fiyat" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Toplam Fiyat</label>
+                                        <input type="text" name="cift_kat_farkı_total_price" id="CiftKatFarkiTotalPrice" value="{{rentedStandAreaData.cift_kat_stand_farki_toplam_fiyat}}" class="form-control" placeholder="Toplam Fiyat" readony />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col mt-3">
+                                <h6 class="text-primary mb-3">Dış Alan</h6>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="col-md-4">
+                                        <label>Birim (m2)</label>
+                                        <input type="text" name="dis_alan" id="DisAlan" class="form-control" value="{{rentedStandAreaData.dis_alan_brim}}" placeholder="Birim" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Fiyat</label>
+                                        <input type="text" name="dis_alan_price" id="DisAlanPrice" value="{{rentedStandAreaData.dis_alan_fiyat}}" class="form-control" placeholder="Fiyat" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Toplam Fiyat</label>
+                                        <input type="text" name="dis_alan_total_price" id="DisAlanTotalPrice" value="{{rentedStandAreaData.dis_alan_toplam_fiyat}}" class="form-control" placeholder="Toplam Fiyat" readony />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="d-flex flex-column">
+                            <div class="col mt-3">
+                                <h6 class="text-primary mb-3">Hizmet Bedelleri İçeriği</h6>
+                                <div class="d-flex align-items-center gap-2">
+                                    <textarea rows="5" style="max-height: 100px" name="hizmet_bedelleri_icerigi" id="HizmetBelleriIcerigi" class="form-control" placeholder="Hizmet Bedelleri İçeriği">{{rentedStandAreaDetailData.hizmet_bedelleri_icerigi | default('Hat bağlama, internet, salon genel temizliği ve güvenliği, ısıtma, soğutma, ambulans hizmeti, sarf malzeme ve diğer hizmet bedeli') }}</textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Column 1 -->
+                                <div class="col-md-6 mt-3">
+                                    <h6 class="text-primary mb-3">m2 Başına Hizmet Bedeli</h6>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="text" name="m2_basina_hizmet_bedeli" id="m2BasinaHizmetBedeli" value="{{rentedStandAreaDetailData.m2_kare_basina_hizmet_bedeli}}" class="form-control" placeholder="m2 Başına Hizmet Bedeli">
+                                    </div>
+                                </div>
+                                <!-- Column 2 -->
+                                <div class="col-md-6 mt-3">
+                                    <h6 class="text-primary mb-3">m2 Başına Katı Atık Bedeli</h6>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="text" name="m2_basina_katik_atik_bedeli" id="m2BasinaKatiAtikBedeli" value="{{rentedStandAreaDetailData.m2_basina_kati_atik_bedeli}}" class="form-control" placeholder="m2 Başına Hizmet Bedeli">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        
+                            <div class="row">
+                                <div class="col-md-3 mt-3">
+                                    <h6 class="text-primary mb-3">Bir yıllık Online Hizmet Bedeli</h6>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="text" name="bir_yillik_online_hizmet_bedeli" id="BirYillikOnlineHizmetBedeli"  value="{{rentedStandAreaDetailData.bir_yillik_online_hizmet_bedeli}}" class="form-control" placeholder="Bir Yıllık Online Hizmet Bedeli">
+                                    </div>
+                                </div>
+                                <!-- Column 4 -->
+                                <div class="col-md-3 mt-3">
+                                    <h6 class="text-primary mb-3">Toplam TL</h6>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="text" name="toplam_tl" id="ToplamTl" value="{{rentedStandAreaDetailData.bir_yillik_online_hizmet_bedeli}}"  class="form-control" placeholder="Toplam TL">
+                                    </div>
+                                </div>
+                                <!-- Column 5 -->
+                                <div class="col-md-3 mt-3">
+                                    <h6 class="text-primary mb-3">KDV {{ applicationDetail.vakif_status ? '%10' : '%20' }}</h6>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="text" name="kdv" id="Kdv" class="form-control" value="{{rentedStandAreaDetailData.kdv_tutari | number_format(2, '.', ',')}}"  placeholder="KDV">
+                                    </div>
+                                </div>
+                                <!-- Column 6 -->
+                                <div class="col-md-3 mt-3">
+                                    <h6 class="text-primary mb-3">Sözleşme Damga Vergisi</h6>
+                                    <div class="d-flex flex-column gap-1">
+                                        <input type="text" name="sozlesme_damga_vergisi" id="SozlesmeDamgaVergisi"  value="{{rentedStandAreaDetailData.sozlesme_damga_vergisi}}" class="form-control" placeholder="Sözleşme Damga Vergisi">
+                                        <label style="font-size: 12px; color: gray;">(KDV hariç toplamın binde 1,89'u)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="row">
+                                <!-- Column 7 -->
+                                <div class="col-md-4 mt-3">
+                                    <div class="d-flex flex-column gap-1">
+                                        <h6 class="text-primary mb-3">Genel Toplam TL</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="text" name="genel_toplam_tl" id="GenelToplamTL" class="form-control"  value="{{rentedStandAreaDetailData.genel_toplam ?? '6000'}}" placeholder="Genel Toplam TL">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        
+                        <div class="d-flex flex-column">
+                            <div class="row">
+                                <div class="text-primary col">Ödeme Planı</div>
+                            </div>
+                            <div class="row">
+                                    <label class="form-check-label" for="hepsiOdendi">
+                                        <input type="checkbox" name="hepsi_odendi" {{ rentedStandAreaPaymentData.hepsi_odendi ? 'checked' : '' }} id="hepsiOdendi">
+                                        Hepsi Ödendi
+                                  </label>
+                                
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col mt-3">
+                                        <div class="d-flex flex-column gap-1 taksit">
+                                            <h6 class="text-primary mb-3 taksit">İlk Ödeme</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" name="pesinat" id="pesinat" class="form-control taksit" value="{{rentedStandAreaPaymentData.pesinat}}" placeholder="Peşinat">
+                                        </div>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <div class="d-flex flex-column gap-1 taksit">
+                                            <h6 class="text-primary mb-3 taksit">1. Taksit (%20)</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="date" name="bir_taksit" id="BirTaksit" maxlength="10" class="form-control taksit" value="{{rentedStandAreaPaymentData.bir_taksit}}" placeholder="Birinci Taksit">
+                                        </div>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <div class="d-flex flex-column gap-1 taksit">
+                                            <h6 class="text-primary mb-3 taksit">2. Taksit (%20)</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="date" name="iki_taksit" id="IkiTaksit" maxlength="10" class="form-control taksit" value="{{rentedStandAreaPaymentData.iki_taksit}}" placeholder="İkinci Taksit">
+                                        </div>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <div class="d-flex flex-column gap-1 taksit">
+                                            <h6 class="text-primary mb-3 taksit">3. Taksit</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="date" name="uc_taksit" id="UcTaksit" maxlength="10" class="form-control taksit" value="{{rentedStandAreaPaymentData.uc_taksit}}" placeholder="Üçüncü Taksit">
+                                        </div>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <div class="d-flex flex-column gap-1 taksit">
+                                            <h6 class="text-primary mb-3 taksit">4. Taksit (%20)</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="date" name="dort_taksit" id="DortTaksit" maxlength="10" class="form-control taksit" value="{{rentedStandAreaPaymentData.dort_taksit}}" placeholder="Dördüncü Taksit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <button class="btn btn-primary col-12 py-3 fs-5">Kaydet ve Güncelle</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+    </div>
+    </div>
+    </main>
+    <footer id="page-footer" class="pagefooter">
+    </footer>
+
+    </div>
+    
+    <script type="text/javascript" src="{{base_path}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+        
+        
+    <script>
+$(document).ready(function () {
+    const m2_basina_kati_atik_bedeli = 300;
+    const m2_basina_hizmet_bedeli = 800;
+    const bir_yillik_online_hizmet_bedeli = 6000;
+    const m2BasinaHizmetBedeliMinPrice = 300000;
+    const m2BasinaKatiAtikBedeliMinPrice = 150000;
+    let kvdOrani = {{applicationDetail.vakif_status ? 0.1 : 0.2 }};
+    let damgaVergisiOrani = 0.00189;
+    
+    let totalPrice = bir_yillik_online_hizmet_bedeli; // Başlangıçta sadece bir yıllık hizmet bedelini ekliyoruz
+    let isChecked = "{{ rentedStandAreaPaymentData.hepsi_odendi }}"
+
+    
+    if (isChecked == 1) {
+        $(".taksit").hide()
+    } else {
+        $(".taksit").show()
+    }
+    
+    $("#hepsiOdendi").on('change', function(e) {
+        if ($(this).is(':checked')) {
+            $(".taksit").hide()
+        } else {
+            $(".taksit").show()
+        }
+    })
+
+    $("input").on("input", function () {
+            totalPrice = bir_yillik_online_hizmet_bedeli;
+            
+            let ozelDekarasyonBirim = parseFloat($("#OzelDekorasyon").val()) || 0;
+            let ozelDekarasyonFiyat = parseFloat($("#OzelDekorasyonPrice").val()) || 0;
+            let ozelDekerasyonTotalPrice = ozelDekarasyonBirim * ozelDekarasyonFiyat;
+            $("#OzelDekorasyonTotalPrice").val(ozelDekerasyonTotalPrice);
+
+            let sponsorlukBirim = parseFloat($("#Sponsorluk").val()) || 0;
+            let sponsorlukFiyat = parseFloat($("#SponsorlukPrice").val()) || 0;
+            let sponsorlukTotalPrice = sponsorlukFiyat;
+            $("#SponsorlukTotalPrice").val(sponsorlukTotalPrice);
+    
+            let meydanaBakanCepheBirim = parseFloat($("#MeydanaBakanCepheFarki").val()) || 0;
+            let meydanaBakanCepheFiyat = parseFloat($("#MeydanaBakanCepheFarkiPrice").val()) || 0;
+            let meydanaBakanCepheTotalFiyat = meydanaBakanCepheBirim * meydanaBakanCepheFiyat;
+            $("#MeydanaBakanCepheFarkiTotalPrice").val(meydanaBakanCepheTotalFiyat);
+
+            let ciftKatBirim = parseFloat($("#CiftKatFarki").val()) || 0;
+            let ciftKatFiyat = $("#CiftKatFarkiPrice").val(ozelDekarasyonFiyat * 0.75);
+            let ciftKatToplamFiyat = ciftKatBirim * $(ciftKatFiyat).val();
+            $("#CiftKatFarkiTotalPrice").val(ciftKatToplamFiyat);
+    
+            let disAlanBirim = parseFloat($("#DisAlan").val()) || 0;
+            let disAlanFiyat = $("#DisAlanPrice").val(sponsorlukFiyat * 0.75);
+            let disAlanToplamFiyat = disAlanBirim * $(disAlanFiyat).val();
+            $("#DisAlanTotalPrice").val(disAlanToplamFiyat);
+
+            let m2BasinaHizmetBedeliPrice = (ozelDekarasyonBirim + sponsorlukBirim + ciftKatBirim) * m2_basina_hizmet_bedeli;
+            if (m2BasinaHizmetBedeliMinPrice <= m2BasinaHizmetBedeliPrice) {
+                m2BasinaHizmetBedeliPrice = m2BasinaHizmetBedeliMinPrice;
+            }
+            $("#m2BasinaHizmetBedeli").val(m2BasinaHizmetBedeliPrice);
+            
+            let m2BasinaKatiAtikBedeliPrice = (ozelDekarasyonBirim + sponsorlukBirim + ciftKatBirim) * m2_basina_kati_atik_bedeli;
+            if (m2BasinaKatiAtikBedeliMinPrice <= m2BasinaKatiAtikBedeliPrice) {
+                m2BasinaKatiAtikBedeliPrice = m2BasinaKatiAtikBedeliMinPrice;
+            }
+            $("#m2BasinaKatiAtikBedeli").val(m2BasinaKatiAtikBedeliPrice);
+            
+            let withoutProccessPrice = ozelDekerasyonTotalPrice + sponsorlukTotalPrice + meydanaBakanCepheTotalFiyat + ciftKatToplamFiyat + disAlanToplamFiyat + m2BasinaHizmetBedeliPrice + m2BasinaKatiAtikBedeliPrice + bir_yillik_online_hizmet_bedeli;
+            let formattedProcessPrice =  withoutProccessPrice.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
+            
+            $("#ToplamTl").val(formattedProcessPrice)
+    
+            let kdvTutari = withoutProccessPrice * kvdOrani;
+            let formattedKdvTutari = kdvTutari.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
+            $("#Kdv").val(formattedKdvTutari);
+
+            let damgaVergisiTutari = withoutProccessPrice * damgaVergisiOrani;
+            let formattedDamgaPrice = damgaVergisiTutari.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
+            
+            $("#SozlesmeDamgaVergisi").val(formattedDamgaPrice);
+            totalPrice = withoutProccessPrice + kdvTutari + damgaVergisiTutari;
+    
+            let formattedPrice = totalPrice.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
+            
+            
+            $("#BirYillikOnlineHizmetBedeli").val(bir_yillik_online_hizmet_bedeli)
+            
+            $("#GenelToplamTL").val(formattedPrice);
+        });
+    });
+
+
+    </script>
+    
+    <script>
+        $("#evrakTamamlaForm").on('submit', function(e) {
+            e.preventDefault();
+            
+            $.ajax({
+                url: '{{ urlFor('evrakTamamlaStore') }}',
+                type: 'POST',
+                data: {
+                    application_id: '{{application.id}}',
+                    salon_and_stant_no: $("#SalonAndStantNo").val(),
+                    ozel_dekerasyon: $("#OzelDekorasyon").val(),
+                    ozel_dekerasyon_price: $("#OzelDekorasyonPrice").val(),
+                    ozel_dekerasyon_total_price: $("#OzelDekorasyonTotalPrice").val(),
+                    sponsorluk: $("#Sponsorluk").val(),
+                    sponsorluk_price: $("#SponsorlukPrice").val(),
+                    sponsorluk_total_price: $("#SponsorlukTotalPrice").val(),
+                    meydana_bakan_cephe_farkı: $("#MeydanaBakanCepheFarki").val(),
+                    meydana_bakan_cephe_farkı_price: $("#MeydanaBakanCepheFarkiPrice").val(),
+                    meydana_bakan_cephe_farkı_total_price: $("#MeydanaBakanCepheFarkiTotalPrice").val(),
+                    cift_kat_farkı: $("#CiftKatFarki").val(),
+                    cift_kat_farkı_price: $("#CiftKatFarkiPrice").val(),
+                    cift_kat_farkı_total_price: $("#CiftKatFarkiTotalPrice").val(),
+                    dis_alan: $("#DisAlan").val(),
+                    dis_alan_price: $("#DisAlanPrice").val(),
+                    dis_alan_total_price: $("#DisAlanTotalPrice").val(),
+                    hizmet_bedelleri_icerigi: $("#HizmetBelleriIcerigi").val(),
+                    m2_basina_hizmet_bedeli: $("#m2BasinaHizmetBedeli").val(),
+                    m2_basina_katik_atik_bedeli: $("#m2BasinaKatiAtikBedeli").val(),
+                    bir_yillik_online_hizmet_bedeli: $("#BirYillikOnlineHizmetBedeli").val(),
+                    toplam_tl: $("#ToplamTl").val(),
+                    kdv: $("#Kdv").val(),
+                    sozlesme_damga_vergisi: $("#SozlesmeDamgaVergisi").val(),
+                    genel_toplam_tl: $("#GenelToplamTL").val(),
+                    pesinat: $("#pesinat").val(),
+                    bir_taksit: $("#BirTaksit").val(),
+                    iki_taksit: $("#IkiTaksit").val(),
+                    uc_taksit: $("#UcTaksit").val(),
+                    dort_taksit: $("#DortTaksit").val(),
+                    hepsi_odendi: $("#hepsiOdendi").is(':checked') ? 1 : 0
+                },
+                success: function(response) {
+                    $("#successMessage").show()
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            })
+            
+        })
+    </script>
+
+    <div class="modal" tabindex="-1" id="applicationDetailModal">
+
+    </div>
+</body>
+
+</html>

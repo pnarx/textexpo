@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Basamak Bilişim İçerik Yönetim Sistemi</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/_next/daebdf84909b4a06a7cb.css" data-n-g="" />
+    <link rel="stylesheet" href="{{base_path}}/assets/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script src="{{base_path}}/assets/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+
+</head>
+
+<body>
+    <div id="page-container">
+        {% include 'navigation.twig' %}
+        <header id="page-header" class="pageheader">
+            <div class="content-header">
+                <div class="navbar-header">
+                    <button type="button" class="btn-bars btn">
+                        <span class="ti-menu"></span>
+                    </button>
+                    <div class="app-title">Başvuru Süreç Detay</div>
+                    <div class="mobile-nav">
+                        <button class="btn" type="button" id="mobileBtn">
+                            <i class="ti-layout-grid2-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="main-container">
+            <div class="content">
+                <div class="row">
+                    <div class="col d-flex justify-content-between align-items-center">
+                        {% if application.pre_application_detail is null %}
+                            <span class="text-danger">Başvuru Tamamlanmamış</span>
+                            
+                        {% else %}
+                            <span class="text-success">Başvuru Tamamlanmış</span>
+                        {% endif %}
+
+                        <div class="d-flex gap-3">
+                            <a href="{{urlFor('evrakTamamla', { applicationToken: application.pre_application.token })}}">
+                                <button class="btn btn-info">Evrak Tamamla</button>
+                            </a>
+                            <button class="btn btn-success" disabled>Excel'e Aktar</button>
+                            <form action="{{urlFor('exportPdf', {token: application.pre_application.token})}}" method="GET">
+                                <button class="btn btn-primary" {% if rentedStandAreaData is null %}disabled{% endif %}>PDF'e Aktar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col">
+                        <h5 class="text-primary">Ön Başvuru Bilgileri</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label>Adı Soyadı</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.full_name ?? '' }}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Şirket İsmi</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.company_name ?? '' }}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Ünvanı</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.duty ?? '' }}" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <label>Şirket Web Sitesi</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.company_web_site ?? '' }}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>E Posta</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.email ?? '' }}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Şirket Telefon</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.company_phone ?? '' }}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Şahıs Telefon</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.mobile_phone ?? '' }}" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label>Soru</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.question ?? '' }}" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mesaj</label>
+                            <input type="text" class="form-control" disabled value="{{ application.pre_application.message ?? '' }}" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+                {% if application.pre_application_detail is not empty %}
+                    <div class="row mt-5">
+                        <div class="col">
+                            <h5 class="text-primary">Tüm Başvuru Bilgileri</h5>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <label>Adres</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.address}}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Ülke</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.country}}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Şehir</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.city}}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>İlçe</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.district}}" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label>Şirket Temsilcisi</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.company_representative}}" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Şirket Temsilcisi Ünvanı</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.company_official_title}}" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label>Vergi No</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.tax_number}}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Vergi Dairesi</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.tax_office}}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Vakıf</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.vakif_status ? 'Evet' : 'Hayır' }}" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label>Fuar Yöneticisi</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.fair_manager}}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Fuar Yöneticis Telefon Numarası</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.fair_manager_mobile_phone}}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Fuar Yöneticis E Posta</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.fair_manager_email}}" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label>Finans Yöneticisi</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.finance_officer_title}}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Finans Yöneticisi Telefon</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.finance_officer_phone}}" />
+                        </div>
+                        <div class="col-md-4">
+                            <label>Finans Yöneticisi E-Posta</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.finance_officer_email}}" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <label>Nace Kod</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.nace_code}}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Mersis Numarası</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.mersis_number}}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Kep Adresi</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.kep_address}}" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>Mikro Üstü</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.mikro_obi}}" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label>Saha İstanbul Üyelik Durumu</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.saha_istanbul_member_status}}" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Saha Expo Satış</label>
+                            <input type="text" class="form-control" disabled value="{{application.pre_application_detail.saha_expo_sales}}" />
+                        </div>
+                    </div>
+
+                {% else %}
+                    <span class="text-danger">Başvuru Tamamlanmamış</span>
+                {% endif %}
+            </div>
+    </div>
+    </div>
+    </main>
+    <footer id="page-footer" class="pagefooter">
+    </footer>
+
+    </div>
+    
+    <script type="text/javascript" src="{{base_path}}/assets/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert2@7.0.9/dist/sweetalert2.all.js"></script>
+
+
+    <div class="modal" tabindex="-1" id="applicationDetailModal">
+        
+    </div>
+</body>
+
+</html>

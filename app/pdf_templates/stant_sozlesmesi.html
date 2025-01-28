@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Stant Sözleşmesi</title>
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse; /* Çerçeveleri birleştirir */
+        }
+    
+        td, th {
+            padding: 8px;
+            border: 1px solid #272727;
+            text-align: left;
+        }
+
+        .header {
+            height: 125px;
+        }
+    
+        td {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+    
+        .fillColumn {
+            background-color: #FFFFCC;
+        }
+    
+        .textRed {
+            color: #ff0000;
+        }
+    
+        .flex-table {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        .flex-table div {
+            flex: 1;
+        }
+    
+        .flex-table div.middle {
+            flex: 2;
+        }
+    
+        .columnHeight {
+            height: 50px;
+        }
+    
+        .signatureHeight {
+            height: 200px;
+        }
+    
+        .textSize {
+            font-size: 12px;
+        }
+    
+        .footer {
+            background-color: rgb(45, 45, 255);
+            color: white;
+        }
+    
+        /* İç içe tablo ayarları */
+        table table {
+            border-spacing: 0; /* İç tablodaki boşluğu kaldır */
+            border: none; /* İç tablonun dış kenar çizgisini kaldır */
+        }
+    
+        table table td, table table th {
+            border: 1px solid #ddd; /* İç tablonun kenar çizgilerini ekle */
+        }
+    
+    </style>
+    
+</head>
+
+<body>
+
+    <table>
+        <tr class="header">
+            <td>X</td>
+            <td colspan="4">
+                SAHA 2026                                                                                                                                                                                                                      ULUSLARARASI SAVUNMA, HAVACILIK VE UZAY SANAYİ FUARI
+5-9 MAYIS 2026 / İSTANBUL FUAR MERKEZİ
+EK 1 - ALAN KİRALAMA SÖZLEŞMESİ
+            </td>
+            <td>X</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">Firma Adı</td>
+            <td colspan="5">{{firma_adi}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">Adresi</td>
+            <td colspan="5">{{adresi}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">İlçe</td>
+            <td>{{ilce}}</td>
+            <td class="fillColumn">Şehir</td>
+            <td>{{sehir}}</td>
+            <td class="fillColumn">Ülke</td>
+            <td>{{ulke}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">İş Tel.</td>
+            <td>{{is_tel}}</td>
+            <td class="fillColumn">Web Sitesi</td>
+            <td>{{web_sitesi}}</td>
+            <td class="fillColumn">Şirket E-Posta</td>
+            <td>{{sirket_eposta}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">Firma Yetkilisi</td>
+            <td>{{firma_yetkilisi}}</td>
+            <td class="fillColumn">Ünvanı</td>
+            <td>{{unvani}}</td>
+            <td class="fillColumn">Cep Tel</td>
+            <td>{{cep_tel}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">Yetkili E-Posta</td>
+            <td>{{yetkili_eposta}}</td>
+            <td class="fillColumn">Vergi No</td>
+            <td>{{vergi_no}}</td>
+            <td class="fillColumn">Vergi Dairesi</td>
+            <td>{{vergi_dairesi}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">Fuar Sorumlusu / Unvanı</td>
+            <td>{{fuar_sorumlusu_unvani}}</td>
+            <td class="fillColumn">Fuar Sorumlusu Cep Telefonu</td>
+            <td>{{fuar_sorumlusu_cep_tel}}</td>
+            <td class="fillColumn">Fuar Sorumlusu E-Posta</td>
+            <td>{{fuar_sorumlusu_eposta}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">Nace Kod</td>
+            <td>{{nace_kod}}</td>
+            <td class="fillColumn">Mersis No</td>
+            <td>{{mersis_no}}</td>
+            <td class="fillColumn">Kep Adresi</td>
+            <td>{{kep_adresi}}</td>
+        </tr>
+        <tr class="columnHeight">
+            <td class="fillColumn">Mikro/Kobş/Kobi Üstü</td>
+            <td>{{mikro_kobs_kobi_ustu}}</td>
+            <td class="fillColumn">Saha İstanbul Üyelik Durumu</td>
+            <td>{{saha_istanbul_uyelik_durumu}}</td>
+            <td class="fillColumn">Saha Expo Satış</td>
+            <td>{{saha_expo_satis}}</td>
+        </tr>
+        
+        <tr>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="padding: 0!important;">
+                <table class="fillColumn">
+                    <tr>
+                        <td colspan="2">KİRALANAN STANT ALANI</td>
+                    </tr>
+                    <tr>
+                        <td>Salon ve Stant Numarası</td>
+                        <td>Paket Stant / Özel Dekorasyon</td>
+                    </tr>
+                </table>
+            </td>
+            <td class="fillColumn">Birim</td>
+            <td class="fillColumn">Fiyatı (TL)</td>
+            <td class="fillColumn">Tutar (TL)</td>
+        </tr>
+            <tr>
+                <td rowspan="5" colspan="2">{{salon_stant_no}}</td>
+                <td>Özel Dekorasyon</td>
+                <td>{{ozel_dekarasyon_fiyat}}</td>
+                <td>{{ozel_dekarasyon_fiyat}}</td>
+                <td>{{ozel_dekarasyon_toplam_fiyat}}</td>
+            </tr>
+            <tr>
+                <td>Özel Dekorasyon</td>
+                <td style="width: 50%;">{{sponsorluk_brim}}</td>
+                <td>{{sponsorluk_fiyat}}</td>
+                <td>{{sponsorluk_toplam_fiyat}}</td>
+            </tr>
+            <tr>
+                <td>Meydana Bakan Cephe Farkı</td>
+                <td>{{meydana_bakan_cephe_farki_brim}}</td>
+                <td>{{meydana_bakan_cephe_farki_fiyat}}</td>
+                <td>{{meydana_bakan_cephe_farki_toplam_fiyat}}</td>
+            </tr>
+            <tr>
+                <td>Çift Kat Stant Farkı</td>
+                <td>{{cift_kat_stant_farki_brim}}</td>
+                <td>{{cift_kat_stant_farki_fiyat}}</td>
+                <td>{{cift_kat_stant_farki_toplam_fiyat}}</td>
+            </tr>
+            <tr>
+                <td>Dış Alan</td>
+                <td>{{dis_alan_brim}}</td>
+                <td>{{dis_alan_fiyat}}</td>
+                <td>{{dis_alan_toplam_fiyat}}</td>
+            </tr>
+        
+
+        <tr>
+            <td colspan="6"></td>
+        </tr>
+
+        <!-- Hizmet Bedelleri İçeriği -->
+        <tr>
+            <td colspan="3" class="fillColumn">Hizmet Bedelleri İçeriği</td>
+            <td colspan="3" class="fillColumn">Stand Büyüklüğüne Göre Alınacak Hizmet Bedeli Tutarı</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{hizmet_sozlesmesi_icerigi}}</td>
+            <td colspan="3" style="padding: 0!important;">
+                <table>
+                    <tr>
+                        <td>m2 Başına Hizmet Bedeli</td>
+                        <td>{{m2_basina_hizmet_bedeli}}</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>m2 Başına Katı Atık Bedeli</td>
+                        <td>{{m2_basina_kati_atik_bedeli}}</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Bir Yıllık Online Hizmet Bedeli</td>
+                        <td>{{bir_yillik_online_hizmet_bedeli}}</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="textRed">
+                Önemli Notlar
+                - Özel dekorasyon stantlar açık cephelerinin en fazla %30'unu duvarla kapatabilir. - Özel dekorasyon bitişik nizam stantlarda katılımcılar, komşu standın yüksekliğinden fazla olan cephesinin arka tarafını, komşu standın dekoruna uygun renkte malzeme ile kapatmakla yükümlüdür. - Paket stant (15-21 m2) ile katılım sağlayan firmalara; 1 masa, 4 sandalye, 1 banko, Halı, Alınlık yazısı, Dijital baskı logo, Aydınlatma, 1m2 kilitli depo alanı ve 5kW elektrik sağlanacaktır.
+            </td>
+            <td colspan="3" style="padding: 0!important;">
+                <table class="table">
+                    <tr>
+                        <td>Toplam TL</td>
+                        <td>{{toplam}}</td>
+                    </tr>
+                    <tr>
+                        <td>KDV %20</td>
+                        <td>{{kdv}}</td>
+                    </tr>
+                    <tr>
+                        <td>Sözleşme damga vergisi (KDV Hariç Toplamın binde 1,89'u)</td>
+                        <td>{{damga_vergisi}}</td>
+                    </tr>
+                    <tr>
+                        <td>GENEL TOPLAM TL</td>
+                        <td>{{genel_toplam}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6"></td>
+        </tr>
+
+        <!-- Banka Bilgileri ve Ödeme Planı -->
+        <tr>
+            <td colspan="3" class="fillColumn">Banka Bilgileri</td>
+            <td colspan="3" class="fillColumn">Ödeme Planı</td>
+        </tr>
+        <tr>
+            <td class="fillColumn">BANKA ADI: YAPI ve KREDİ BANKASI A.Ş.</td>
+            <td>Peşinat (%20)</td>
+            <td>1. Taksit</td>
+            <td>2. Taksit</td>
+            <td>3. Taksit</td>
+            <td>4. Taksit</td>
+        </tr>
+        <tr>
+            <td class="fillColumn">ŞUBESİ: İstanbul Deri Şubesi</td>
+            <td>{{pesinat}}2</td>
+            <td>{{bir_taksit}}</td>
+            <td>{{iki_taksit}}</td>
+            <td>{{uc_taksit}}</td>
+            <td>{{dort_taksit}}</td>
+        </tr>
+        <tr>
+            <td class="fillColumn">IBAN: TR56 0006 7010 0000 0057 7946 00</td>
+            <td colspan="5" class="textRed">7 gün içerisinde peşinat ödemesinin yapılmaması halinde, alan talep eden farklı bir firmaya kiralanabilir.</td>
+        </tr>
+        <tr>
+            <td colspan="6"></td>
+        </tr>
+
+        <!-- Zaman Planı ve Organizasyon -->
+        <tr>
+            <td colspan="3" class="fillColumn">ZAMAN PLANI</td>
+            <td colspan="3" class="fillColumn">ORGANİZATÖR BİLGİLERİ</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="padding: 0!important;">
+                <table>
+                    <tr>
+                        <td class="fillColumn">
+                            <ul style="list-style: none; margin: 0; padding: 0;">
+                                <li>Dekorasyon projesini onaylatma</li>
+                                <li>Katılımcı bilgi formu teslimi</li>
+                                <li>Yaka kartı bilgileri teslimi</li>
+                            </ul>
+                        </td>
+                        <td class="textRed">03/27/2026</td>
+                    </tr>
+                    <tr>
+                        <td class="fillColumn">Stant düzenleme / hazırlık</td>
+                        <td class="textRed">
+                            <ul style="list-style: none; margin: 0; padding: 0;">
+                                <li>28 Nisan - 4 Mayıs 2026</li>
+                                <li>Not: 28 Nisan kurulum başlangıç saati 08:30'dur. 4 Mayıs kurulum bitiş saati 12:00'dir</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fillColumn">Etkinlik alanının boşaltılması</td>
+                        <td class="textRed"><ul style="list-style: none; margin: 0; padding: 0;"><li>10 Mayıs 2026 Pazar saat 15:00'tir.</li></ul></td>
+                    </tr>
+                </table>
+            </td>
+            <td colspan="3" style="padding: 0!important;">
+                <table>
+                    <tr>
+                        <td>SAHA EXPO Fuarcılık Hizmetleri A.Ş.</td>
+                    </tr>
+                    <tr>
+                        <td> Adres: Teknopark İstanbul, Sanayi Mah. Teknopark Bulvarı No:1/9A Blok, Üst Zemin Kat, No: 104 34906 Pendik / İstanbul</td>
+                    </tr>
+                    <tr>
+                        <td>Vergi Dairesi: Pendik V.D. Vergi Numarası: 739 100 4333</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">Fuar Katılım sözleşmesinin koşullarına itiraz etmeksizin tümünü okuyup kabul ettiğimizi, her iki sayfada bulunan firma kaşesi ve yetkili imza ile teyit ederiz.</td>
+        </tr>
+        <tr>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="fillColumn">KATILIMCI FİRMA YETKİLİSİ ADI SOYADI VE GÖREVİ</td>
+            <td colspan="3" class="fillColumn">ORGANİZATÖR YETKİLİSİ ADI SOYADI VE GÖREVİ</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="columnHeight"></td>
+            <td colspan="3" class="columnHeight"></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="signatureHeight"></td>
+            <td colspan="3" class="signatureHeight"></td>
+        </tr>
+        <tr>
+            <td colspan="3">KAŞE, İMZA VE TARİH</td>
+            <td colspan="3">KAŞE, İMZA VE TARİH</td>
+        </tr>
+        <tr>
+            <td colspan="6" class="fillColumn">İmza Sirküleri / Vekalet Belgesi sözleşmeye eklenecektir</td>
+        </tr>
+        <tr class="footer">
+            <td colspan="6">BU FUAR 5174 SAYILI KANUN GEREĞİNCE TÜRKİYE ODALAR VE BORSALAR BİRLİĞİ (TOBB) DENETİMİNDE DÜZENLENMEKTEDİR.</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>

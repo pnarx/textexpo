@@ -1,0 +1,93 @@
+{% extends "layout/main.twig" %}
+
+{% block content %}
+
+    <div class="row flex-column-reverse flex-lg-column wide">
+        <div class="col-12">
+          <img class="image move-up-figure d-none d-md-block" src="https://cdn.sahaexpo.com/other/saha-expo-figure.webp" data-src="https://cdn.sahaexpo.com/other/saha-expo-figure.webp" />
+          <img class="image move-figure d-block d-md-none" src="https://cdn.sahaexpo.com/other/saha-expo-figure.webp" data-src="https://cdn.sahaexpo.com/other/saha-expo-figure.webp" />
+        </div>
+        <div class="col-12">
+          <div class="row text-center">
+            <h1 class="textPrimary katilimFormTitle">Stantlı Katılım Başvurusu</h1>
+          </div>
+          <div class="text-center katilimFormDesciption">
+            <p>L&uuml;tfen aşağıdaki formu doldurunuz, yetkilimiz sizinle en kısa s&uuml;rede iletişime ge&ccedil;ecektir.</p>
+          </div>
+          <form id="preApplicationForm" class="mt-" style="margin-top: 30px">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>Adınız Soyadınız</label>
+                  <input style="margin-top: 10px" type="text" name="full_name" placeholder="Adınız Soyadınız *" required="" />
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>Firma Adı *</label>
+                  <input style="margin-top: 10px" type="text" name="company_name" placeholder="Firma Adı *" required="" />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>Görevi *</label>
+                  <input style="margin-top: 10px" type="text" name="duty" placeholder="Görevi *" required="" />
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>Firma Web Sitesi</label>
+                  <input style="margin-top: 10px" type="text" name="company_website" placeholder="Firma Web Sitesi" />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>E-Posta *</label>
+                  <input style="margin-top: 10px" type="text" name="email" placeholder="E-Posta *" required="" />
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>İş Telefonu</label>
+                  <input style="margin-top: 10px" type="tel" name="phone" class="maskPhone" placeholder="İş Telefonu" />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>Cep Telefonu *</label>
+                  <input style="margin-top: 10px" type="tel" name="mobile_phone" placeholder="Cep Telefonu *" class="maskPhone" required="" />
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="textfield textfield--spacing-strong d-flex flex-column">
+                  <label>Bizi Nereden Duydunuz? *</label>
+                  <input style="margin-top: 10px" type="text" name="hear_about_us" placeholder="Bizi Nereden Duydunuz? *" required="" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 mt-3">
+                <div class="textarea d-flex flex-column" data-testid="textarea" data-spacing="strong">
+                  <label>Mesajınız (<span id="counter">0</span> / 255)</label>
+                  <textarea style="margin-top: 10px" rea class="textarea-input" maxlength="255" name="message" id="message" placeholder="Mesajınız"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="g-recaptcha mt-3" data-sitekey="6LdI8tMnAAAAAFNXQCjq-XwTsYV8uW0XUAVuNByx"></div>
+            <div class="col-xs-12 mt-3">
+              <button type="submit" data-appearance="info" data-spacing="strong" class="button button-xxl" tabindex="0">
+                <span class="button-text" id="loadingForm">Başvur</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+{% endblock %}

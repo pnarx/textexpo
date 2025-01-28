@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Smtp Ayarlari</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{base_path}}/assets/css/_next/daebdf84909b4a06a7cb.css" data-n-g="" />
+    <link rel="stylesheet" href="{{base_path}}/assets/bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script src="{{base_path}}/assets/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <style>
+        .spn {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="page-container">
+        {% include 'navigation.twig' %}
+        <header id="page-header" class="pageheader">
+            <div class="content-header">
+                <div class="navbar-header">
+                    <button type="button" class="btn-bars btn">
+                        <span class="ti-menu"></span>
+                    </button>
+                    <div class="app-title">Smtp Ayarları</div>
+                    <div class="mobile-nav">
+                        <button class="btn" type="button" id="mobileBtn">
+                            <i class="ti-layout-grid2-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main id="main-container">
+            <div class="content bg-light">
+                <div class="row">
+                    <form method="POST" action="{{urlFor('smtpStore')}}">
+                        <div class="row">
+                            <div class="col-md-6 mt-3">
+                                <label>Host</label>
+                                <input type="text" name="host" class="form-control mt-2" value="{{smtp.host ?? ''}}" />
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label>Şifre</label>
+                                <input type="password" name="password" class="form-control mt-2" value="{{smtp.password ?? ''}}" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mt-3">
+                                <label>Port</label>
+                                <input type="text" name="port" class="form-control mt-2" value="{{smtp.port ?? ''}}" />
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label>Kullanıcı Adı</label>
+                                <input type="text" name="username" class="form-control mt-2" value="{{smtp.username ?? ''}}" />
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <button class="btn btn-primary">Kaydet ve Güncelle</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <hr />
+                
+                {% for temp in allEamilTemplates %}
+                    <h3>{{temp.email_templates_name}}</h3>
+                    <form method="POST" action="{{urlFor('templateStore')}}" class="my-3">
+                        
+                        <input type="hidden" name="id" value="{{temp.id}}" />
+                        <div class="row">
+                            <div class="col">
+                                <textarea class="editor" name="template">{{temp.template}}</textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <button class="btn btn-primary">Kaydet ve Güncelle</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    {% if not loop.last %}
+                        <hr />
+                    {% endif %}
+                {% endfor %}
+                
+            </div>
+    </div>
+    </div>
+    </main>
+    <footer id="page-footer" class="pagefooter">
+    </footer>
+
+    </div>
+    
+    
+    
+
+
+    <script type="text/javascript" src="//araba-servis.demomatik.com/public/resources/admin/js/tinymce/tinymce.min.js"></script>
+    
+    <script src="https://unpkg.com/sweetalert2@7.0.9/dist/sweetalert2.all.js"></script>
+    
+    <script type="text/javascript">
+        tinymce.init({
+            selector: ".editor",
+            content_css: 'https://araba-servis.demomatik.com/tr/public/themes/primary/assets/css/bootstrap.min.css,https://araba-servis.demomatik.com/tr/public/themes/primary/assets/css/basamak.min.css,https://araba-servis.demomatik.com/tr/public/themes/primary/assets/css/font-awesome.min.css',
+            language: "tr",
+            height: "500",
+            plugins: [
+                'lists', 'link', 'image', 'code', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+                'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | casechange blocks | bold italic backcolor | ' +
+                'alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist checklist outdent indent | removeformat | ' + 'link image code | a11ycheck table help ',
+            extended_valid_elements: "+iframe[src|width|height|name|align|class]",
+            relative_urls: false,
+            image_title: true,
+
+            /* enable automatic uploads of images represented by blob or data URIs*/
+            automatic_uploads: true,
+            /*
+              URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
+              images_upload_url: 'postAcceptor.php',
+              here we add custom filepicker only to Image dialog
+            */
+            images_upload_url: 'https://koyweb.xyz/basvuruadmin/smtp-ayari' /** site domaini ve controller eklenmeli. */,
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+
+    </script>
+
+    <div class="modal" tabindex="-1" id="applicationDetailModal">
+
+    </div>
+</body>
+
+</html>
